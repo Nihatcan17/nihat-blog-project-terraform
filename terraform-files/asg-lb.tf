@@ -16,24 +16,24 @@ resource "aws_lb_target_group" "capstone-target" {
 
 
 resource "aws_lb" "capstone-lb" {
-  name = "${var.tags}-load-balancer"
+  name               = "${var.tags}-load-balancer"
   load_balancer_type = "application"
-  security_groups = [ aws_security_group.load-balancer-sec.id ]
+  security_groups    = [aws_security_group.load-balancer-sec.id]
   subnet_mapping {
-  subnet_id = aws_subnet.public-1a.id  
-  } 
+    subnet_id = aws_subnet.public-1a.id
+  }
   subnet_mapping {
     subnet_id = aws_subnet.public-1b.id
   }
-  
+
 }
 
 resource "aws_lb_listener" "capstone-listener" {
   load_balancer_arn = aws_lb.capstone-lb.arn
-  port = 80
-  protocol = "HTTP"
+  port              = 80
+  protocol          = "HTTP"
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.capstone-target.arn
   }
 }
@@ -46,7 +46,7 @@ resource "aws_lb_listener" "capstone-listener" {
 #     type = "forward"
 #     target_group_arn = aws_lb_target_group.capstone-target.arn
 #   }
-  
+
 # }
 
 resource "aws_autoscaling_group" "capstone-asg" {
@@ -65,7 +65,7 @@ resource "aws_autoscaling_group" "capstone-asg" {
     version = "1"
   }
   vpc_zone_identifier = [aws_subnet.private-1a.id, aws_subnet.private-1b.id]
-  
+
 
   tag {
     key                 = "name"
@@ -76,6 +76,6 @@ resource "aws_autoscaling_group" "capstone-asg" {
 
 resource "aws_autoscaling_attachment" "capstone-attachment" {
   autoscaling_group_name = aws_autoscaling_group.capstone-asg.id
-  lb_target_group_arn = aws_lb_target_group.capstone-target.arn
-  
+  lb_target_group_arn    = aws_lb_target_group.capstone-target.arn
+
 }

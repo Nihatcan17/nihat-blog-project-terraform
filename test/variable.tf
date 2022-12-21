@@ -1,0 +1,4 @@
+variable "tags" {
+  default = "nihat"
+}
+
