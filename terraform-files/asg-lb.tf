@@ -38,16 +38,16 @@ resource "aws_lb_listener" "capstone-listener" {
   }
 }
 
-# resource "aws_lb_listener" "http-https" {
-#   load_balancer_arn = aws_lb.capstone-lb.arn
-#   port = 443
-#   protocol = "HTTPS"
-#   default_action {
-#     type = "forward"
-#     target_group_arn = aws_lb_target_group.capstone-target.arn
-#   }
+ resource "aws_lb_listener" "http-https" {
+   load_balancer_arn = aws_lb.capstone-lb.arn
+   port = 443
+   protocol = "HTTPS"
+   default_action {
+     type = "forward"
+     target_group_arn = aws_lb_target_group.capstone-target.arn
+   }
 
-# }
+ }
 
 resource "aws_autoscaling_group" "capstone-asg" {
   name                      = "${var.tags}-asg"

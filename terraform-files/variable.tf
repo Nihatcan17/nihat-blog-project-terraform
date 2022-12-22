@@ -11,3 +11,5 @@ variable "region" {}
 variable "bucket-name" {}
 
 variable "db-password" {}
+
+variable "url" {}
