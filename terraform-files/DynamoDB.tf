@@ -1,11 +1,11 @@
 resource "aws_dynamodb_table" "dynamo" {
   name           = "blog-project-nihat" # must be uniq!!
   billing_mode   = "PROVISIONED"
-  hash_key       = "blog-project"
+  hash_key       = "id"
   stream_enabled = false
-
+  
   depends_on = [
-    aws_s3_bucket
+    aws_s3_bucket.capstone-s3
   ]
   read_capacity  = 1
   write_capacity = 1
@@ -16,9 +16,7 @@ resource "aws_dynamodb_table" "dynamo" {
     name = "id"
     type = "S"
   }
-  ttl {
-    enabled = false
-  }
+  
 
   tags = {
     "Name" = "${var.tags}-table"

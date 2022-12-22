@@ -5,9 +5,6 @@ resource "aws_lambda_function" "lambda-function" {
   filename         = "lambda_function.zip"
   source_code_hash = filebase64sha256("lambda_function.zip")
   handler          = "index.test"
-  vpc_config {
-    subnet_ids = aws_db_subnet_group.capstone_db.subnet_ids
-  }
 
   depends_on = [
     aws_dynamodb_table.dynamo

@@ -21,7 +21,6 @@ resource "aws_route53_record" "dev-ns" {
   zone_id = data.aws_route53_zone.hosted-zone.zone_id
   name    = "blog.awscan.link" #change here
   type    = "A"
-  ttl     = "30"
   depends_on = [
     aws_cloudfront_distribution.cf-blog
   ]
@@ -34,24 +33,22 @@ resource "aws_route53_record" "dev-ns" {
   failover_routing_policy {
     type = "PRIMARY"
   }
-  records = [ "test" ]
 }
 
 resource "aws_route53_record" "failover" {
   zone_id = data.aws_route53_zone.hosted-zone.zone_id
   name    = "blog.awscan.link" #change here
   type    = "A"
-  ttl     = "30"
   depends_on = [
     aws_route53_record.dev-ns
   ]
   alias {
     name = aws_s3_bucket.failover.bucket_domain_name
     zone_id = data.aws_route53_zone.hosted-zone.zone_id
+    evaluate_target_health = false
   }
   failover_routing_policy {
     type = "SECONDARY"
   }
-  records = [ "test2" ]
 }
 

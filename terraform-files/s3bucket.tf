@@ -67,7 +67,6 @@ resource "aws_s3_bucket_object" "object" {
   bucket = aws_s3_bucket.failover.bucket
   key    = "index.html"
   source = "./S3_Static_Website/index.html"
-  etag = filemd5("./index.html")
   content_type = "text/html"
   acl = "public-read"
 }
