@@ -10,7 +10,7 @@ data "template_file" "userdata" {
   }
 }
 resource "aws_launch_template" "asg-lt" {
-  image_id = "ami-0ee23bfc74a881de5"
+  image_id = "ami-0ee23bfc74a881de5" # do not change !!
   key_name = var.key
   network_interfaces {
     subnet_id       = aws_subnet.private-1a.id

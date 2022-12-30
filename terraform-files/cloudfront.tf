@@ -1,5 +1,5 @@
 locals {
-  api_origin_id = "alborigin"
+  api_origin_id = "Loadbalanceroriginid"
 }
 
 resource "aws_cloudfront_distribution" "cf-blog" {
@@ -15,7 +15,7 @@ resource "aws_cloudfront_distribution" "cf-blog" {
       }
     }
     
-    aliases = [ "awscan.link" ]
+    aliases = [ "blog.${var.domain}" ]
     
     enabled = true
     restrictions {
@@ -30,11 +30,11 @@ resource "aws_cloudfront_distribution" "cf-blog" {
       target_origin_id = local.api_origin_id
       cached_methods =  ["GET", "HEAD", "OPTIONS"] 
       smooth_streaming = false
+      
       forwarded_values {
         query_string = true
         cookies {
-          forward = "all"
-          
+          forward = "all"  
         }
         headers = [ "*" ]
       }
@@ -47,16 +47,17 @@ resource "aws_cloudfront_distribution" "cf-blog" {
     viewer_certificate {
     acm_certificate_arn = data.aws_acm_certificate.certificate.arn
     ssl_support_method = "sni-only"
+    
     }
    
     http_version = "http2"
     is_ipv6_enabled = false
-    
+     
     
   
 }
 
 data "aws_acm_certificate" "certificate" {
-  domain = "awscan.link"  # change here (you must write own domain name )
+  domain = "${var.domain}"  
 }
 

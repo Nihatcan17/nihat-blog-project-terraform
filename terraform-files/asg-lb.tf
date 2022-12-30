@@ -22,6 +22,7 @@ resource "aws_lb_target_group" "capstone-target" {
 resource "aws_lb" "capstone-lb" {
   name               = "${var.tags}-load-balancer"
   load_balancer_type = "application"
+  ip_address_type = "ipv4"
   security_groups    = [aws_security_group.load-balancer-sec.id]
   subnet_mapping {
     subnet_id = aws_subnet.public-1a.id
@@ -32,7 +33,7 @@ resource "aws_lb" "capstone-lb" {
 
 }
 
-resource "aws_lb_listener" "capstone-listener" {
+resource "aws_lb_listener" "https-listener" {
   load_balancer_arn = aws_lb.capstone-lb.arn
   port              = 443
   protocol          = "HTTPS"
@@ -43,7 +44,22 @@ resource "aws_lb_listener" "capstone-listener" {
   certificate_arn = data.aws_acm_certificate.certificate.arn
 }
 
-
+resource "aws_lb_listener" "http-listener" {
+  load_balancer_arn = aws_lb.capstone-lb.arn
+  protocol = "HTTP"
+  port = 80
+  default_action {
+    type = "redirect"
+    redirect {
+      port = "443"
+      protocol = "HTTPS"
+      host = "#{host}"
+      path = "/#{path}"
+      query = "#{query}"
+      status_code = "HTTP_301"
+    }  
+  }  
+}
 
 resource "aws_autoscaling_group" "capstone-asg" {
   name                      = "${var.tags}-asg"
@@ -53,6 +69,7 @@ resource "aws_autoscaling_group" "capstone-asg" {
   health_check_type         = "ELB"
   desired_capacity          = 2
   force_delete              = true
+  wait_for_capacity_timeout = "2m"
   depends_on = [
     aws_instance.nat-instance
   ]
@@ -65,7 +82,7 @@ resource "aws_autoscaling_group" "capstone-asg" {
 
   tag {
     key                 = "name"
-    value               = "nht-1"
+    value               = "${var.tags}"
     propagate_at_launch = true
   }
 }
@@ -76,3 +93,34 @@ resource "aws_autoscaling_attachment" "capstone-attachment" {
 
 }
 
+
+resource "aws_autoscaling_policy" "scale_down" {
+  autoscaling_group_name = aws_autoscaling_group.capstone-asg.name
+  name                   = "${var.tags}-scale-down"
+  adjustment_type        = "ChangeInCapacity"
+  scaling_adjustment     = "-1"
+  policy_type = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 40.0
+  }
+
+}
+
+
+
+resource "aws_autoscaling_policy" "scale_up" {
+  autoscaling_group_name = aws_autoscaling_group.capstone-asg.name
+  name                   = "${var.tags}-scale-up"
+  adjustment_type        = "ChangeInCapacity"
+  scaling_adjustment     = "+1"
+  policy_type = "TargetTrackingScaling"
+  target_tracking_configuration {
+     predefined_metric_specification {
+       predefined_metric_type = "ASGAverageCPUUtilization"
+     }
+     target_value = 70.0
+  }
+}

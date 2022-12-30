@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "dynamo" {
-  name           = "blog-project-nihat" # must be uniq!!
+  name           = "blog-project-nihat" # do not change !!
   billing_mode   = "PROVISIONED"
   hash_key       = "id"
   stream_enabled = false

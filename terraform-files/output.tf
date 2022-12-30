@@ -1,4 +1,3 @@
-output "lb-output" {
-  value = aws_lb.capstone-lb.dns_name
-
+output "url" {
+  value = aws_route53_record.dev-ns.name
 }

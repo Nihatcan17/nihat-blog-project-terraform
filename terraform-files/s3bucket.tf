@@ -26,7 +26,7 @@ resource "aws_s3_bucket_policy" "bucket-policy" {
 
 
 resource "aws_s3_bucket" "failover" {
-  bucket = "blog.${var.url}"
+  bucket = "blog.${var.domain}"
   force_destroy = true
   website {
     index_document = "index.html"

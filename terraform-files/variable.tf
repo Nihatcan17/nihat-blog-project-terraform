@@ -1,8 +1,6 @@
 variable "tags" {}
 
-variable "ec2-type" {
-  default = "t2.micro"
-}
+variable "ec2-type" {}
 
 variable "key" {}
 
@@ -13,3 +11,5 @@ variable "bucket-name" {}
 variable "db-password" {}
 
 variable "url" {}
+
+variable "domain" {}

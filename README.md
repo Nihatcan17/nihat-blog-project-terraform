@@ -1,22 +1,40 @@
-# nihat-blog-project-terraform
+# NIHAT-BLOG-PROJECT-TERRAFORM
 
-![Project_004][def]
 
-[def]: nihat-blog.jpg
 
-Description:
-The Nihat Blog Page Application aims to deploy blog application as a web application written Django Framework on AWS Cloud Infrastructure. This infrastructure has Application Load Balancer with Auto Scaling Group of Elastic Compute Cloud (EC2) Instances and Relational Database Service (RDS) on defined VPC. Also, The Cloudfront and Route 53 services are located in front of the architecture and manage the traffic in secure. User is able to upload pictures and videos on own blog page and these are kept on S3 Bucket. This architecture was created with Terraform.
+# Description:
+Hi everybody !! 
+I finally finished my big project . 
+Here is my Nihat Blog Page Application. With this project I aim to deploy blog application as a web application written Django Framework on AWS Cloud Infrastructure. There are two public, two private subnets and one AZ has NAT Instance (it can be used as bastion host) and public subnets routed internet gateway. This infrastructure has Application Load Balancer with Auto Scaling Group of Elastic Compute Cloud (EC2) Instances and Relational Database Service (RDS) on defined VPC. Also, The Cloudfront and Route 53 services are located in front of the architecture and manage the traffic in secure. User is able to upload pictures and videos on own blog page and these are kept on S3 Bucket. 
 
-Outcome:
+Besides creating this AWS project on the console, I wrote a terraform file to create the whole project with terraform.
+If you would like to check it out, here is my GitHub link:
 
-Register Page:
 
-![Project_004](register.jpg)
+
+
+# Road Map:
+
+![Project_004](roadmap.png)
+
+
+
+# Outcome:
 
 
 Home Page:
 
-![Project_004](anasayfa.jpg)
+![Project_004](home-page.PNG)
+
+
+![Project_004](home-page-mobile.jpeg)
+
+
+![Project_004](certificate.PNG)
+
+Profile Page:
+
+![Project_004](profile-page.PNG)
 
 
 NOTE: You must customize your variable in  terraform-files/myvars.auto.tfvars file.
