@@ -10,6 +10,4 @@ variable "bucket-name" {}
 
 variable "db-password" {}
 
-variable "url" {}
-
 variable "domain" {}

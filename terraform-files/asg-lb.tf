@@ -99,7 +99,7 @@ resource "aws_autoscaling_policy" "scale_down" {
   name                   = "${var.tags}-scale-down"
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = "-1"
-  policy_type = "TargetTrackingScaling"
+  policy_type = "SimpleScaling"
   target_tracking_configuration {
     predefined_metric_specification {
       predefined_metric_type = "ASGAverageCPUUtilization"
@@ -116,7 +116,7 @@ resource "aws_autoscaling_policy" "scale_up" {
   name                   = "${var.tags}-scale-up"
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = "+1"
-  policy_type = "TargetTrackingScaling"
+  policy_type = "SimpleScaling"
   target_tracking_configuration {
      predefined_metric_specification {
        predefined_metric_type = "ASGAverageCPUUtilization"
