@@ -14,7 +14,7 @@ Besides creating this AWS project on the console, I wrote a terraform file to cr
 
 # Road Map:
 
-![Project_004](roadmap.png)
+![Project_004](project-images/roadmap.png)
 
 
 
@@ -22,82 +22,82 @@ Besides creating this AWS project on the console, I wrote a terraform file to cr
 
 VPC: 
 
-![Project_004](vpc.PNG)
+![Project_004](project-images/vpc.PNG)
 
 
 Public Route Table: 
 
-![Project_004](public-route-table.PNG)
+![Project_004](project-images/public-route-table.PNG)
 
 
 Private Route Table: 
 
-![Project_004](private-route-table.PNG)
+![Project_004](project-images/private-route-table.PNG)
 
 Security Groups:
 
 Load Balancer Security Group:
 
-![Project_004](loadbalancer-sg.PNG)
+![Project_004](project-images/loadbalancer-sg.PNG)
 
 RDS Security Group:
 
-![Project_004](rds-sg.PNG)
+![Project_004](project-images/rds-sg.PNG)
 
 NAT Instace Security Group:
 
-![Project_004](nat-instance-sg.PNG)
+![Project_004](project-images/nat-instance-sg.PNG)
 
 Blog Instance Security Group: 
 
-![Project_004](blog-instance-sg.PNG)
+![Project_004](project-images/blog-instance-sg.PNG)
 
 
 Blog Instance:
 
-![Project_004](blog-instance.PNG)
+![Project_004](project-images/blog-instance.PNG)
 
 
 Nat Instance: 
 
-![Project_004](nat-instace.PNG)
+![Project_004](project-images/nat-instace.PNG)
 
 Target Group:
 
-![Project_004](target-group.PNG)
+![Project_004](project-images/target-group.PNG)
 
 
 Load Balancer:
 
-![Project_004](load-balacer.PNG)
+![Project_004](project-images/load-balacer.PNG)
 
 Auto Scaling Group:
 
-![Project_004](asg.PNG)
+![Project_004](project-images/asg.PNG)
 
 S3 Bucket:
 
-![Project_004](s3bucket.PNG)
+![Project_004](project-images/s3bucket.PNG)
 
 
 DynamoDB Table:
 
-![Project_004](dynamodb-table.PNG)
+![Project_004](project-images/dynamodb-table.PNG)
 
 
 Lambda:
 
-![Project_004](lamda.PNG)
+![Project_004](project-images/lamda.PNG)
 
 
 Cloudfront:
 
-![Project_004](cloud-front.PNG)
+![Project_004](project-images/cloud-front.PNG)
 
 
 Route53:
 
-![Project_004](route-53.PNG)
+![Project_004](project-images/route-53.PNG)
 
 
 
@@ -106,25 +106,25 @@ Route53:
 
 Home Page:
 
-![Project_004](home-page.PNG)
+![Project_004](project-images/home-page.PNG)
 
 
-![Project_004](home-page-mobile.jpeg)
+![Project_004](project-images/home-page-mobile.jpeg)
 
 
-![Project_004](certificate.PNG)
+![Project_004](project-images/certificate.PNG)
 
 Profile Page:
 
-![Project_004](profile-page.PNG)
+![Project_004](project-images/profile-page.PNG)
 
 
 Post Page:
 
-![Project_004](create-post.PNG)
+![Project_004](project-images/create-post.PNG)
 
 # Note !!
 
 Dont forget customize terraform-files/myvars.auto.tfvars file !!
 
-![Project_004](myvars.PNG)
+![Project_004](project-images/myvars.PNG)
